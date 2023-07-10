@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "automotive-assistance"
+version = "0.1.0"
+description = ""
+authors = ["xenoturbellida <ElPGordeeva@stud.kpfu.ru>"]
+readme = "README.md"
+packages = [{include = "automotive_assistance"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+grpcio-tools = "^1.56.0"
+pyaudio = "^0.2.13"
+requests = "^2.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
