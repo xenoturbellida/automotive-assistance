@@ -1,6 +1,7 @@
 import io
 import grpc
 import pydub
+from pydub.playback import play
 
 import yandex.cloud.ai.tts.v3.tts_pb2 as tts_pb2
 import yandex.cloud.ai.tts.v3.tts_service_pb2_grpc as tts_service_pb2_grpc
@@ -25,7 +26,8 @@ def synthesize(text) -> pydub.AudioSegment or None:
                 container_audio_type=tts_pb2.ContainerAudio.WAV
             )
         ),
-        loudness_normalization_type=tts_pb2.UtteranceSynthesisRequest.LUFS
+        loudness_normalization_type=tts_pb2.UtteranceSynthesisRequest.LUFS,
+        hints=[tts_pb2.Hints(voice='filipp')]
     )
 
     # Установить соединение с сервером.
@@ -51,8 +53,6 @@ def synthesize(text) -> pydub.AudioSegment or None:
         raise err
 
 
-if __name__ == '__main__':
-    text_ = 'Я Яндекс Спичк+ит. Я могу превратить любой текст в речь. Теперь и в+ы — можете!'
-    audio = synthesize(text_)
-    with open('speech.wav', 'wb') as fp:
-        audio.export(fp, format='wav')
+def voice_text(text: str) -> None:
+    audio = synthesize(text)
+    pydub.playback.play(audio)
