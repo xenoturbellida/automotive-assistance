@@ -27,7 +27,7 @@ def synthesize(text) -> pydub.AudioSegment or None:
             )
         ),
         loudness_normalization_type=tts_pb2.UtteranceSynthesisRequest.LUFS,
-        hints=[tts_pb2.Hints(voice='filipp')]
+        hints=[tts_pb2.Hints(voice='zahar')]
     )
 
     # Установить соединение с сервером.
