@@ -6,10 +6,11 @@ import yandex.cloud.ai.stt.v3.stt_service_pb2_grpc as stt_service_pb2_grpc
 
 from token_service import get_yandex_iam_token, get_folder_id
 from errors import YandexAPIError, FolderIdNotSpecified
+from text_analysis import analyze_text
 
-CHUNK_SIZE = 4000
+CHUNK_SIZE = 5000
 
-FRAMES_PER_BUFFER = 4000  # 3200
+FRAMES_PER_BUFFER = 5000  # 3200
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 16000
@@ -85,6 +86,7 @@ def run():
                 alternatives = [a.text for a in r.partial.alternatives]
             if event_type == 'final':
                 alternatives = [a.text for a in r.final.alternatives]
+                analyze_text(alternatives[0])
             if event_type == 'final_refinement':
                 alternatives = [a.text for a in r.final_refinement.normalized_text.alternatives]
             print(f'type={event_type}, alternatives={alternatives}')
