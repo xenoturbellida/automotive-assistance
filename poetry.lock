@@ -583,6 +583,17 @@ python3-Xlib = {version = "*", markers = "platform_system == \"Linux\" and pytho
 pytweening = ">=1.0.4"
 
 [[package]]
+name = "pydub"
+version = "0.25.1"
+description = "Manipulate audio with an simple and easy high level interface"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pydub-0.25.1-py2.py3-none-any.whl", hash = "sha256:65617e33033874b59d87db603aa1ed450633288aefead953b30bded59cb599a6"},
+    {file = "pydub-0.25.1.tar.gz", hash = "sha256:980a33ce9949cab2a569606b65674d748ecbca4f0796887fd6f46173a7b0d30f"},
+]
+
+[[package]]
 name = "pygetwindow"
 version = "0.0.9"
 description = "A simple, cross-platform module for obtaining GUI information on application's windows."
@@ -866,4 +877,4 @@ requests = ">=2.0.0,<3.0.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "7496620841cf321d8acf50f18eec8dfcf3e183bfd25afef4d84fb558ae74373a"
+content-hash = "a903210c5446df766f5b3ca2637462c63cd8efc632da3d93d943f40c422d64a3"
