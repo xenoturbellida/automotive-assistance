@@ -6,8 +6,9 @@ from assistant_features import (
     get_current_weather,
     WEATHER_INTERPRETATION_CODES,
 )
+from speech_synthesis import voice_text
 
-ASSISTANT_NAME = 'гарик'
+ASSISTANT_NAME = 'антон'
 
 
 def is_command_about_time(command: str) -> bool:
@@ -37,19 +38,24 @@ def analyze_text(text: str):
         return
 
     command = text.replace(ASSISTANT_NAME, "")
-    print("Command:", command)
+    print(f"Вы:{command}")
 
     if is_command_about_time(command):
         time = datetime.datetime.now().strftime("%H:%M")
-        print(f"Сейчас {time}")
+        answer = f"Сейчас {time}"
     elif is_command_about_playing(command):
         topic = command.replace("включи", "").strip()
         pywhatkit.playonyt(topic)
-        print(f"включаю {topic}")
+        answer = f'включаю "{topic}"'
     elif is_command_about_weather(command):
         location = get_location()
         weather = get_current_weather(location)
-        print(f"Сейчас {weather.get('temperature')} градуса. "
-              f"Скорость ветра - {weather.get('windspeed')} километров в час. "
-              + WEATHER_INTERPRETATION_CODES.get(weather.get('weathercode'))
-              )
+        answer = (f"Сейчас {weather.get('temperature')} градуса. "
+                  f"Скорость ветра - {weather.get('windspeed')} километра в час. "
+                  + WEATHER_INTERPRETATION_CODES.get(weather.get('weathercode')) + '.'
+                  )
+    else:
+        answer = "Я не понимаю. Повторите, пожалуйста."
+
+    print(f"{ASSISTANT_NAME.capitalize()}: {answer}")
+    voice_text(answer)

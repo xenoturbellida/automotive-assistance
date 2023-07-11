@@ -12,6 +12,7 @@ grpcio-tools = "^1.56.0"
 pyaudio = "^0.2.13"
 requests = "^2.31.0"
 pywhatkit = "^5.4"
+pydub = "^0.25.1"
 
 
 [build-system]

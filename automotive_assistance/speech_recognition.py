@@ -44,6 +44,7 @@ def gen(stream):
     yield stt_pb2.StreamingRequest(session_options=recognize_options)
 
     seconds = 5
+    print("Слушаю...")
     for i in range(0, int(RATE / FRAMES_PER_BUFFER * seconds)):
         data = stream.read(FRAMES_PER_BUFFER)
         yield stt_pb2.StreamingRequest(chunk=stt_pb2.AudioChunk(data=data))
