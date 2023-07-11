@@ -38,7 +38,7 @@ def analyze_text(text: str):
         return
 
     command = text.replace(ASSISTANT_NAME, "")
-    print(f"Вы: {command}")
+    print(f"Вы:{command}")
 
     if is_command_about_time(command):
         time = datetime.datetime.now().strftime("%H:%M")
@@ -46,7 +46,7 @@ def analyze_text(text: str):
     elif is_command_about_playing(command):
         topic = command.replace("включи", "").strip()
         pywhatkit.playonyt(topic)
-        answer = f"включаю {topic}"
+        answer = f'включаю "{topic}"'
     elif is_command_about_weather(command):
         location = get_location()
         weather = get_current_weather(location)
